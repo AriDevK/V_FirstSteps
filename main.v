@@ -1,28 +1,30 @@
 module main
 
 fn main() {
-	// print simple message
-	mut msg := 'Hello'
-	println(msg)
+	mut data := [1, 2, 3, 4]
+	println(data)
 
-	// concat text to a message
-	msg += ' web friends'
-	println(msg)
+	// adding data into array (this add on the first parameter index)
+	data.insert(2, [5, 6, 7])
+	println(data)
 
-	// check if string contains text
-	println('the message contains web? ' + msg.contains('web').str())
+	// there is not any append function, so the way is like this
+	data = [1, 2, 3, 4] // restarting the data just for fun :D
+	data.insert(data.len, [5, 6, 7])
+	println(data)
 
-	// capitalize the message
-	println('this message is uppercase ' + msg.to_upper())
+	// the other way to append data is using this operator <<
+	data << 8
+	println(data)
 
-	// get string length
-	println('this is the message length ' + msg.len.str())
+	// we can also filter data from the array using filter like JS or the Where of .NET
+	// |--- yeah var names use snake_case (not really fan being honest)
+	// v
+	new_data := data.filter(it % 2 == 0)
+	println(new_data)
 
-	// replacing web to world
-	msg = msg.replace('web', 'world')
-	println('the message has changed with ' + msg)
-
-	// splitting the message
-	print('this are the message words ')
-	println(msg.split(' '))
+	// and also (like JS) we have the map function in order to apply a method to each
+	// item of an array ("aggregate" on .NET)
+	mapped_data := data.map(it * 2)
+	println(mapped_data)
 }
